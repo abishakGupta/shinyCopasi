@@ -357,9 +357,6 @@ server <- function(input, output, session) {
       colnames(data) <- c('Value')
       return(data)
     }
-    else if(selectedTask == 'Linear Noise Approximation'){
-      return(resTask()$covariance_matrix)
-    }
     else
       return(NULL)
     },options = list(scrollX = TRUE, scrollY = '400px'))
@@ -387,7 +384,11 @@ server <- function(input, output, session) {
       return(resTask()$parameter)
     }
     else if(selectedTask == 'Linear Noise Approximation'){
-      return(resTask()$covariance_matrix)
+      colNames <- colnames(resTask()$covariance_matrix)
+      data <- data.frame(resTask()$covariance_matrix)
+      data <- formattable(data, list(area(col = colnames(data)) ~ color_tile('lightpink', 'lightgreen')))
+      colnames(data) <- colNames
+      return(as.datatable(data,options = list(scrollX = TRUE, scrollY = '400px')))
     }
     else
       return(NULL)
@@ -541,7 +542,7 @@ server <- function(input, output, session) {
       tabsetPanel(id = 'PE',tabPanel('Main',DT::dataTableOutput('tableResults1')),tabPanel('Fitted Parameters',DT::dataTableOutput('tableResults2')),tabPanel('Experiments', DT::dataTableOutput('tablePEexp')))
     }
     else if(selectedTask == 'Linear Noise Approximation'){
-      tabPanel('Table',DT::dataTableOutput('tableResults1'))
+      tabPanel('Table',DT::dataTableOutput('tableResults2'))
     }
     else{
     }
