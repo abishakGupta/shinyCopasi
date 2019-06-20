@@ -126,23 +126,22 @@ application.*
 ## Required packages
 ShinyCOPASI is dependent on several R packages. While these are installed automatically if ShinyCOPASI is run with administrative privileges, it might be required to install them manually if the users don't have administrative privileges. The list of required packages are:
 
-- *Shiny* is the main package used to design the interface. Its capabilities to interactively build web-based application is used to develop the ShinyCOPASI interface.
+- *Shiny* is the main package used to design the interface. Its capabilities to interactively build web-based application is used to develop the ShinyCOPASI interface. More details about this package can be found at: <https://shiny.rstudio.com/>
 
-- *CoRC* is the package that connects R to COPASI. All the functionalities of COPASI are retreived through thhis package.
+- *CoRC* is the package that connects R to COPASI. All the functionalities of COPASI are retreived through thhis package. This package is available at: <https://jpahle.github.io/CoRC/>.
 
-- *devtools* is required for the installation of R packages from external sources. Whenever CoRC is not installed, this is required to install CoRC from its GitHub source.
+- *devtools* is required for the installation of R packages from external sources. Whenever CoRC is not installed, this is required to install CoRC from its GitHub source. Details at: <https://cran.r-project.org/web/packages/devtools/index.html>.
 
-- *reshhape2* is required to modify the data tables. The table structure of model specifications and results obtained using the CoRC package is modified for presentation using this package.
+- *reshhape2* is required to modify the data tables. The table structure of model specifications and results obtained using the CoRC package is modified for presentation using this package. Details at: <https://cran.r-project.org/web/packages/reshape2/index.html>.
 
-- *formattable* is required to color code thhe data tables.
+- *formattable* is required to color code thhe data tables. More details at: <https://renkun-ken.github.io/formattable/>.
 
-- *ggplot2* is required to generate the various plots and bar graphs.
+- *ggplot2* is a package commonly used for graphical purposes. In ShinyCOPASI, it required to generate the various plots and bar graphs. More details at: <https://ggplot2.tidyverse.org/>.
 
-- *shinyTree* is required for the tree structure in the *Selection* panel. This allows to display the model specifications and task details in this panel.
+- *shinyTree* is required for the tree structure in the *Selection* panel. This allows to display the model specifications and task details in this panel. More details at: <https://cran.r-project.org/web/packages/shinyTree/index.html>.
 
-- *markdown* is used in the generic variant of ShinyCOPASI to read the markdown files responsible for the title text.
+- *markdown* is used in the generic variant of ShinyCOPASI to read the markdown files responsible for the title text. More details available at: <https://rmarkdown.rstudio.com/>.
 
+- *XML* is required to read the spefcific features from the COPASI file. These features, such as parameter and constraint list in the optimization task, cannot be extracted through CoRC. More details at: <https://cran.r-project.org/web/packages/XML/index.html>.
 
-- *XML* is required to read the spefcific features from the COPASI file. These features, such as parameter and constraint list in the optimization task, cannot be extracted through CoRC.
-
-- *zip* is required for the model-specific variant of ShinyCOPASI. When using the download option, this package is used to zip the model and its associated files.
+- *zip* is required for the model-specific variant of ShinyCOPASI. When using the download option, this package is used to zip the model and its associated files. More details at: <https://cran.r-project.org/web/packages/zip/index.html>.
