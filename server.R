@@ -88,7 +88,7 @@ server <- function(input, output, session) {
     if (is.null(inputFile$modelData))
       return()
     selectedTask = selection()
-    strOut= paste('<h1>','Model Name:', inputFile$modelAttrs[[2]],'</h1>')
+    strOut= paste('<h1>','Model Name:', ifelse(is.null(inputFile$modelAttrs[[2]]),inputFile$modelName,inputFile$modelAttrs[[2]]),'</h1>')
     if (selectedTask %in% inputFile$taskList ){
       if (selectedTask == 'Parameter Estimation' ){
         expfileName= ''
