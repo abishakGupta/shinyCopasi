@@ -93,13 +93,14 @@ server <- function(input, output, session) {
       if (selectedTask == 'Parameter Estimation' ){
         expfileName= ''
         valfileName= ''
-        if (xmlSize(inputFile$rootnode$doc$children$COPASI[names(inputFile$rootnode$doc$children$COPASI)=='ListOfTasks']$ListOfTasks[[6]][[2]][[9]]) >= 1){
-          xmlList= xmlChildren(inputFile$rootnode$doc$children$COPASI[names(inputFile$rootnode$doc$children$COPASI)=='ListOfTasks']$ListOfTasks[[6]][[2]][[9]][[1]])
+        valuesPE= inputFile$rootnode$doc$children$COPASI[names(inputFile$rootnode$doc$children$COPASI)=='ListOfTasks']$ListOfTasks[[6]][[2]]
+        for (idx in 1:xmlSize(valuesPE)){
+        if (any(xmlAttrs(valuesPE[[idx]]) =="Experiment Set") & xmlSize(valuesPE[[idx]]) >= 1){
+          xmlList= xmlChildren(valuesPE[[idx]][[1]])
           for (i in 1:xmlSize(xmlList)){
             paramValue= xmlToList(xmlList[[i]])
             if (paramValue[[1]] == 'File Name'){
               expfileName= paramValue[[3]]
-              break
             }
           }
           if (expfileName %in% inputFile$fileNames){
@@ -108,9 +109,9 @@ server <- function(input, output, session) {
           else
             expfileName= paste(' <font color=','red','>  Please load a valid data file along with the model. File name: <b>', expfileName ,'</b> </font> ')
         }
-          
-        if (xmlSize(inputFile$rootnode$doc$children$COPASI[names(inputFile$rootnode$doc$children$COPASI)=='ListOfTasks']$ListOfTasks[[6]][[2]][[10]]) > 2){
-          xmlList= xmlChildren(inputFile$rootnode$doc$children$COPASI[names(inputFile$rootnode$doc$children$COPASI)=='ListOfTasks']$ListOfTasks[[6]][[2]][[10]][[1]])
+
+        if (any(xmlAttrs(valuesPE[[idx]]) =="Validation Set") & xmlSize(valuesPE[[idx]]) > 2){
+          xmlList= xmlChildren(valuesPE[[idx]][[1]])
           for (i in 1:xmlSize(xmlList)){
             paramValue= xmlToList(xmlList[[i]])
             if (paramValue[[1]] == 'File Name'){
@@ -123,7 +124,7 @@ server <- function(input, output, session) {
           }
           else
             valfileName= paste(' <font color=','red','>  Please load a valid data file along with the model. File name: <b>', valfileName ,'</b> </font> ')
-        }
+        }}
         strOut= paste(strOut, '<h2>',selectedTask,'</h2>')
         strOut= paste(strOut, '<pre><b> Experimental Data: </b>',expfileName,'<br> <br>')
         strOut= paste(strOut, '<b>Validation Data: </b>',valfileName,'<br>')
