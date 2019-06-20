@@ -11,9 +11,9 @@ server <- function(input, output, session) {
   ## to store the error encountered
   error <- renderText({
     if (is.null(inputFile$dataPaths))
-      error <- c('No model file loaded !!')
+      error <- c('Please load a COPASI or SBML model !')
     else if (is.null(inputFile$modelData))
-      error <- c('Please load a valid model file!!')
+      error <- c('Please load a valid model file!')
     else if (exists('message', where=resTask()))
       error <- c(resTask()$message)
     else
@@ -550,9 +550,9 @@ server <- function(input, output, session) {
   output$SSmsg <- renderText({
     selectedTask <- selection()
     resStr =ifelse(selectedTask == 'Steady State' && !is.null(resTask()$result),resTask()$result,ifelse(!is.null(resTask()$result_ss),resTask()$result_ss,return(NULL)))
-    if(resStr == 'found') return('<pre> <b> Steady state found !!</b></pre>')
-    else if(resStr == 'foundEquilibrium') return('<pre> <b> Equilibrium steady state found!!</b></pre>')
-    else return('<pre> <b> No steady state found !!</b></pre>')
+    if(resStr == 'found') return('<pre> <b> Steady state found !</b></pre>')
+    else if(resStr == 'foundEquilibrium') return('<pre> <b> Equilibrium steady state found !</b></pre>')
+    else return('<pre> <b> No steady state found !</b></pre>')
   })
   
 #### To choose species for table and plot output ** ONLY FOR TIME_COURSE ** ####

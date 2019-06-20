@@ -1,5 +1,5 @@
 
-This web-based interface uses Shiny package in R and CoRC, which a high-level R API for COPASI. The CoRC package can be downloaded from: https://jpahle.github.io/CoRC.
+This web-based interface uses Shiny package in R and CoRC, which is a high-level R API for COPASI. The CoRC package can be downloaded from: https://jpahle.github.io/CoRC.
 
 <!---
 <div style="text-align: center"> 
